@@ -1,0 +1,28 @@
+CXX = g++
+
+# Целевой исполняемый файл
+TARGET = Logger_Console_App
+
+# Директории для исходных файлов и заголовков
+SRC_DIR = src
+INC_DIR = include/Logger_Library
+
+# Исходные файлы
+SRCS = $(SRC_DIR)/Logger_Console_App.cpp $(INC_DIR)/Logger_Library.cpp
+
+# Заголовочные файлы
+HEADERS = $(SRC_DIR)/Logger_Console_App.h $(SRC_DIR)/LogQueue.h $(SRC_DIR)/SeverityLevelFunctions.h $(INC_DIR)/Logger_Library.h
+
+# Флаги компилятора
+CXXFLAGS = -std=c++17 -I$(SRC_DIR) -I$(INC_DIR)
+
+# Правило по умолчанию
+all: $(TARGET)
+
+# Правило для компиляции исполняемого файла
+$(TARGET): $(SRCS) $(HEADERS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+# Правило для очистки
+clean:
+	rm -f $(TARGET)
